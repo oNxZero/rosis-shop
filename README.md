@@ -1,7 +1,7 @@
 # Rosis Shop
 
 <p align="center">
-  <img src="docs/assets/rosis-shop-logo.png" alt="Rosis Shop logo" width="420">
+  <img src="docs/assets/rosis-shop-emblem.png" alt="Rosis Shop logo" width="420">
 </p>
 
 Decorative player shops for **Minecraft 1.21.1 • NeoForge**, with fixes for item duplication, trade accounting, and inventory interactions.
