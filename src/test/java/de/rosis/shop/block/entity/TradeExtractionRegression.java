@@ -12,10 +12,9 @@ import java.util.List;
 
 /** Exercises the actual extraction code used for both stock and payment. */
 public final class TradeExtractionRegression {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         SharedConstants.tryDetectVersion();
         Bootstrap.bootStrap();
-        de.rosis.shop.compat.LegacyCompatibilityRegression.run();
         checkTogglePackets();
         check(Items.ENDER_PEARL, 48, 16, 16, 16);
         check(Items.DIAMOND_SWORD, 4, 1, 1, 1, 1);

@@ -5,7 +5,6 @@ import com.mojang.logging.LogUtils;
 import de.rosis.shop.block.*;
 import de.rosis.shop.block.entity.renderer.ShopIconModels;
 import de.rosis.shop.config.ConfigHandler;
-import de.rosis.shop.compat.LegacyCompatibility;
 import de.rosis.shop.item.ModItemGroups;
 import de.rosis.shop.item.ModItems;
 import de.rosis.shop.lootcondition.ModLootConditions;
@@ -38,7 +37,6 @@ public class RosisShop {
         ModItems.registerModItems(modEventBus);
         ModBlocks.registerModBlocks(modEventBus);
 
-        // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::enqueueCompatibility);
 
@@ -52,10 +50,6 @@ public class RosisShop {
 
         ModItemGroups.register(modEventBus);
 
-        LegacyCompatibility.registerAliases();
-
-
-        // Register ourselves for server and other game events we are interested in
         NeoForge.EVENT_BUS.register(this);
     }
 
@@ -71,20 +65,17 @@ public class RosisShop {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        // Some common setup code
-        LOGGER.info("SETTING UP ROSIS SHOP...");
+        LOGGER.info("Setting up Rosis Shop");
 
         postRegistryTasks.forEach(Runnable::run);
         PostRegAssigner.runAllAssigners();
         ShopIconModels.initialise();
         VariantResources.register();
-        // Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
     }
 
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-        // Do something when the server starts
-        LOGGER.info("HELLO from server starting");
+        LOGGER.info("Rosis Shop server starting");
     }
 
     private final java.util.Map<net.minecraft.world.entity.player.Player, Integer> lastQuickBuy =

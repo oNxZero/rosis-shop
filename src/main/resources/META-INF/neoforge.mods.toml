@@ -9,7 +9,7 @@ version="${mod_version}"
 displayName="${mod_name}"
 authors="${mod_authors}"
 description="${mod_description}"
-logoFile="rosis_shop_emblem.png"
+logoFile="rosis_shop_mark.png"
 displayURL="https://github.com/oNxZero/rosis-shop"
 
 [[dependencies.${mod_id}]]

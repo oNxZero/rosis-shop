@@ -3,13 +3,14 @@ package de.rosis.shop.config;
 import com.electronwill.nightconfig.core.file.FileConfig;
 
 import de.rosis.shop.screen.ToggleButtonID;
-import de.rosis.shop.compat.LegacyCompatibility;
+import de.rosis.shop.RosisShop;
 
 import net.neoforged.fml.loading.FMLPaths;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.nio.file.Files;
 import java.util.EnumMap;
 
 public class ConfigHandler {
@@ -21,7 +22,9 @@ public class ConfigHandler {
 
     private static File prepareConfigPath() {
         try {
-            return LegacyCompatibility.migrateConfig(FMLPaths.CONFIGDIR.get()).toFile();
+            var directory = FMLPaths.CONFIGDIR.get();
+            Files.createDirectories(directory);
+            return directory.resolve(RosisShop.MOD_ID + ".toml").toFile();
         } catch (IOException exception) {
             throw new UncheckedIOException("Could not prepare Rosis Shop config", exception);
         }
