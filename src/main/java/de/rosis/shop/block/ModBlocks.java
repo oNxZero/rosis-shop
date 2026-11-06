@@ -35,8 +35,6 @@ public class ModBlocks {
 
     private static final BlockBehaviour.Properties settingsWood = shopSettings(Blocks.OAK_PLANKS);
 
-    private static final BlockBehaviour.Properties settingsStone = shopSettings(Blocks.STONE);
-
     public static final BlockBehaviour.Properties settingsCarpet = shopSettings(Blocks.RED_CARPET);
 
     private static BlockBehaviour.Properties shopSettings(Block example) {
@@ -46,7 +44,6 @@ public class ModBlocks {
     }
 
     public static final List<DeferredHolder<Block, ? extends AbstractShopBlock>> ALL_SHOPS = new ArrayList<>();
-    public static final List<DeferredHolder<Block, ? extends AbstractShopBlock>> BASIC_SHOPS = new ArrayList<>();
 
     public static final List<DeferredHolder<Block, ShelfShopBlock>> ALL_SHELF_SHOPS = new ArrayList<>(11);
 
@@ -255,9 +252,7 @@ public class ModBlocks {
 
     private static <S extends AbstractShopBlock> DeferredHolder<Block, S> registerBasic(String name, Supplier<S> shop) {
 
-        DeferredHolder<Block, S> block = addToBasicShops(
-                addToAllShops(
-                        BLOCKS.register(name, shop)));
+        DeferredHolder<Block, S> block = addToAllShops(BLOCKS.register(name, shop));
         ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
 
         return block;
@@ -278,12 +273,6 @@ public class ModBlocks {
         return register;
     }
 
-    private static <S extends AbstractShopBlock> DeferredHolder<Block, S> addToBasicShops(
-            DeferredHolder<Block, S> register) {
-        BASIC_SHOPS.add(register);
-        return register;
-    }
-
     private static DeferredHolder<Item, ShopItem> registerShopBlockItem(String name,
             DeferredHolder<Block, AngledShopBlock> block, Colour colour) {
         name = name + "_" + colour.asString();
@@ -297,10 +286,6 @@ public class ModBlocks {
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
         // postRegistryTasks is called in RosisShop.commonSetup()
-    }
-
-    public static List<DeferredHolder<Block, ? extends AbstractShopBlock>> getAllShops() {
-        return ALL_SHOPS;
     }
 
 }

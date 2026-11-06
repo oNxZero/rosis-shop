@@ -72,7 +72,6 @@ public class ShopScreenHandlerOwner extends AbstractContainerMenu {
     private WarningActivator warningActivator;
 
     final AbstractShopEntity.InventoryDelegate shopInventory;
-    // private final PropertyDelegate propertyDelegate;
 
     private final AbstractShopEntity.player_ID_Records_Delegate ID_RECORDS_DELEGATE;
 

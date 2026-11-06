@@ -1,10 +1,7 @@
 package de.rosis.shop.screen;
 
-
-import de.rosis.shop.RosisShop;
 import de.rosis.shop.block.VariantResources;
 import net.minecraft.resources.ResourceLocation;
-
 
 public record ScreenSettingsGroup(
         ScreenSettings CUSTOMER,
@@ -24,34 +21,6 @@ public record ScreenSettingsGroup(
 
         int SETTINGS_TEXT_COLOUR
 ) {
-    /*BASIC(0,
-            new ScreenSettings(
-                    id("owner_customer_screen"),
-                    176, 165,
-                    8,84,
-                    0,0,
-                    80,11),
-            new ScreenSettings(
-                    id("shop_seller"),
-                    228, 254,
-                    33,172,
-                    60,10,
-                    23,11),
-            new ScreenSettings(
-                    id("shop_settings"),
-                    228, 254,
-                    33,172,
-                    60,10,
-                    23,11),
-            203,174,
-            201,195,
-            201,221
-    );*/
-
-    private static ResourceLocation id(String texture){
-        return RosisShop.id("textures/gui/"+texture+".png");
-    }
-
 
     public record ScreenSettings(
             ResourceLocation textureID,
@@ -102,7 +71,6 @@ public record ScreenSettingsGroup(
                 203,174,
                 203,199,
                 203,225,
-
 
                 127,42,
                 75,42,

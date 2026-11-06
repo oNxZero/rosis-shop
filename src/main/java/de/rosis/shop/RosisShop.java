@@ -8,7 +8,6 @@ import de.rosis.shop.config.ConfigHandler;
 import de.rosis.shop.item.ModItemGroups;
 import de.rosis.shop.item.ModItems;
 import de.rosis.shop.lootcondition.ModLootConditions;
-import de.rosis.shop.properties.ModProperties;
 import de.rosis.shop.screen.ModScreenHandlers;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
@@ -24,7 +23,6 @@ import static de.rosis.shop.block.ModBlocks.postRegistryTasks;
 
 import org.slf4j.Logger;
 
-
 @Mod("rosis_shop")
 public class RosisShop {
     public static final String MOD_ID = "rosis_shop";
@@ -39,9 +37,6 @@ public class RosisShop {
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::enqueueCompatibility);
-
-        ModBlockTags.initialise();
-        ModProperties.registerModProperties();
 
         ModBlockEntities.registerBlockEntities(modEventBus);
         ModScreenHandlers.registerScreenHandlers(modEventBus);

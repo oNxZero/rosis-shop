@@ -4,7 +4,6 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import de.rosis.shop.block.ModBlockEntities;
-import de.rosis.shop.block.PostRegAssigner;
 import de.rosis.shop.block.VariantResources;
 import de.rosis.shop.block.entity.WindowSillShopEntity;
 import net.minecraft.core.BlockPos;

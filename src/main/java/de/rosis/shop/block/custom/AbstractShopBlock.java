@@ -2,7 +2,6 @@ package de.rosis.shop.block.custom;
 
 import de.rosis.shop.block.VariantResources;
 import de.rosis.shop.block.entity.AbstractShopEntity;
-import de.rosis.shop.properties.ModProperties;
 import de.rosis.shop.properties.PermissionLevel;
 import de.rosis.shop.screen.ScreenSettingsGroup;
 import net.minecraft.core.BlockPos;
@@ -44,7 +43,7 @@ import org.jetbrains.annotations.Nullable;
 public abstract class AbstractShopBlock extends Block implements EntityBlock {
 
     public static final DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
-    public static final BooleanProperty BREAKABLE = ModProperties.BREAKABLE;
+    public static final BooleanProperty BREAKABLE = BooleanProperty.create("breakable");
 
     public AbstractShopBlock(BlockBehaviour.Properties properties) {
         super(properties);

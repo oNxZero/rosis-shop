@@ -25,8 +25,6 @@ public class ShopScreenHandlerCustomer extends AbstractContainerMenu {
 
     private static final int PAYMENT_SLOT = 76;
     private static final int VENDING_SLOT = 77;
-    private static final int STOCK_END = 53;
-    private static final int PROFIT_END = 75;
 
     public ShopScreenHandlerCustomer(int syncId, Inventory playerInv, RegistryFriendlyByteBuf buf) {// clientInit
         super(ModScreenHandlers.SHOP_SCREEN_HANDLER_CUSTOMER.get(), syncId);

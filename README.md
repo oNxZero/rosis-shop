@@ -1,7 +1,7 @@
 # Rosis Shop
 
 <p align="center">
-  <img src="docs/assets/rosis-shop-mark.png" alt="Rosis Shop logo" width="420">
+  <img src="src/main/resources/rosis_shop_mark.png" alt="Rosis Shop logo" width="420">
 </p>
 
 Player-run shops for **Minecraft 1.21.1 · NeoForge**. Set a price, stock your shop,
@@ -27,7 +27,7 @@ Selectable trades and an ignore-item-data mode are not currently available.
 ## Installation
 
 Use **JDK 21**, **Minecraft 1.21.1**, and **NeoForge 21.1.65 or later in the 21.1 series**.
-Put `rosis-shop-2.1.0.jar` in the `mods` folder on both the client and server.
+Put `rosis-shop-2.1.1.jar` in the `mods` folder on both the client and server.
 Use the same version on both.
 
 Worlds, datapacks, and resource packs must use the `rosis_shop` namespace.
@@ -76,7 +76,7 @@ cd rosis-shop
 bash gradlew build
 ```
 
-On Windows, use `gradlew.bat build`. Output: `build/libs/rosis-shop-2.1.0.jar`.
+On Windows, use `gradlew.bat build`. Output: `build/libs/rosis-shop-2.1.1.jar`.
 
 The build runs trade and packet regressions. Model geometry and resource
 references can also be checked with Python 3:

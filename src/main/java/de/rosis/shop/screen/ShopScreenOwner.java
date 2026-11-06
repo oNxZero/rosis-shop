@@ -125,16 +125,6 @@ public class ShopScreenOwner extends AbstractContainerScreen<ShopScreenHandlerOw
         posY = SETTINGS.toggleEffectsButtonY() + topPos;
         ToggleIconsEffects = addRenderableWidget(new ToggleWidget(posX, posY, ToggleButtonID.EffectsToggle, EFFECTS_ON,
                 EFFECTS_OFF, EFFECTS_TOGGLE_TOOLTIP));
-        /*
-         * posX = SETTINGS.shopStyleButtonX()+leftPos;
-         * posY = SETTINGS.shopStyleButtonY()+topPos;
-         * ToggleShopStyle = addRenderableWidget(new ToggleWidget(posX, posY,
-         * ToggleButtonID.ShopStyleToggle, SHOPFRONT_ICON, EFFECTS_OFF, "foo"));
-         * posX = SETTINGS.ignoreNBTButtonX()+leftPos;
-         * posY = SETTINGS.ignoreNBTButtonY()+topPos;
-         * ToggleIgnoreNBT = addRenderableWidget(new ToggleWidget(posX, posY,
-         * ToggleButtonID.IgnoreNBTToggle, SHOPFRONT_ICON, EFFECTS_OFF, "foo"));
-         */
         for (ToggleButtonID value : ToggleButtonID.values()) {
             toggleButtons.put(value,
                     switch (value) {
@@ -531,13 +521,6 @@ public class ShopScreenOwner extends AbstractContainerScreen<ShopScreenHandlerOw
 
         }
 
-        void toggleOff() {
-            this.toggle = false;
-        }
-
-        void toggleOn() {
-            this.toggle = true;
-        }
     }
 
     protected void updateToggleButtonFromPacket(ToggleButtonID button, boolean state) {
@@ -545,8 +528,6 @@ public class ShopScreenOwner extends AbstractContainerScreen<ShopScreenHandlerOw
     }
 
     protected void setWidgetsVisible(boolean state) {
-        // TODO implement the other features
-        // toggleButtons.values().forEach((w)-> {if(w != null){w.visible=state;}});
 
         ToggleWidget w = toggleButtons.get(ToggleButtonID.EffectsToggle);
         if (w != null) {

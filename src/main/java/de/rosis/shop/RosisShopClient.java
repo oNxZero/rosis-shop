@@ -23,15 +23,6 @@ public class RosisShopClient {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
 
-        event.enqueueWork(() -> {
-            /*
-             * ModBlocks.getAllShops().forEach((DeferredHolder<Block, ? extends
-             * AbstractShopBlock> shop) -> {
-             * ItemBlockRenderTypes.setRenderLayer(shop.get(), RenderType.cutout());
-             * });
-             */
-        });
-
         CushionTextures.initialiseCushionTextures();
         CushionResources.initialise();
 

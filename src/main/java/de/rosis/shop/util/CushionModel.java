@@ -1,7 +1,3 @@
-// Made with Blockbench 4.12.3
-// Exported for Minecraft version 1.17+ for Yarn
-// Paste this class into your mod and generate all required imports
-
 package de.rosis.shop.util;
 
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -33,7 +29,7 @@ public class CushionModel extends Model {
         MeshDefinition modelData = new MeshDefinition();
         PartDefinition modelPartData = modelData.getRoot();
         // Same coordinates and tilt as the cushion in the inventory model.
-        PartDefinition main = modelPartData.addOrReplaceChild("main",
+        modelPartData.addOrReplaceChild("main",
                 CubeListBuilder.create().texOffs(0, 0)
                         .addBox(3.0F, 6.0F, -10.0F, 10.0F, 1.0F, 7.0F),
                 PartPose.offsetAndRotation(0.0F, 12.0F, 16.0F, -0.3926991F, 0.0F, 0.0F));

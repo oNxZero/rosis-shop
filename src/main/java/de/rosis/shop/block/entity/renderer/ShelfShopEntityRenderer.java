@@ -5,7 +5,6 @@ import com.mojang.math.Axis;
 
 import de.rosis.shop.block.custom.ShelfShopBlock;
 import de.rosis.shop.block.entity.ShelfShopEntity;
-import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
