@@ -1,8 +1,7 @@
-Spuds Shop Reforged
-==================
+Rosis Shop
 
-See README.md for installation, configuration, fixes, build instructions,
-and credits for the original Spud's Shops and intermediate forks.
+Decorative player shops for Minecraft 1.21.1 with NeoForge.
+See README.md for installation, configuration, and build instructions.
 
-Repository: https://github.com/oNxZero/spuds-shop-reforged
-License: MIT (see LICENSE.txt)
+Repository: https://github.com/oNxZero/rosis-shop
+License: MIT; original author notices are preserved in LICENSE.txt.

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "rosis_shop:block/crate_shop_spruce"
+    },
+    "facing=east": {
+      "model": "rosis_shop:block/crate_shop_spruce",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "rosis_shop:block/crate_shop_spruce",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "rosis_shop:block/crate_shop_spruce",
+      "y": 270
+    }
+  }
+}

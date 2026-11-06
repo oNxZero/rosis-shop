@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "colour=black": { "model": "rosis_shop:block/cushion_black" },
+    "colour=white": { "model": "rosis_shop:block/cushion_white" },
+    "colour=red": { "model": "rosis_shop:block/cushion_red" },
+    "colour=blue": { "model": "rosis_shop:block/cushion_blue" },
+    "colour=purple": { "model": "rosis_shop:block/cushion_purple" },
+    "colour=green": { "model": "rosis_shop:block/cushion_green" },
+    "colour=lime": { "model": "rosis_shop:block/cushion_lime" },
+    "colour=orange": { "model": "rosis_shop:block/cushion_orange" },
+    "colour=grey": { "model": "rosis_shop:block/cushion_grey" },
+    "colour=light_grey": { "model": "rosis_shop:block/cushion_light_grey" },
+    "colour=brown": { "model": "rosis_shop:block/cushion_brown" },
+    "colour=yellow": { "model": "rosis_shop:block/cushion_yellow" },
+    "colour=light_blue": { "model": "rosis_shop:block/cushion_light_blue" },
+    "colour=cyan": { "model": "rosis_shop:block/cushion_cyan" },
+    "colour=magenta": { "model": "rosis_shop:block/cushion_magenta" },
+    "colour=pink": { "model": "rosis_shop:block/cushion_pink" }
+  }
+}

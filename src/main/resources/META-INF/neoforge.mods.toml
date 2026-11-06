@@ -1,7 +1,7 @@
 modLoader="javafml"
 loaderVersion="${loader_version_range}"
 license="${mod_license}"
-issueTrackerURL="https://github.com/oNxZero/spuds-shop-reforged/issues"
+issueTrackerURL="https://github.com/oNxZero/rosis-shop/issues"
 
 [[mods]]
 modId="${mod_id}"
@@ -9,8 +9,8 @@ version="${mod_version}"
 displayName="${mod_name}"
 authors="${mod_authors}"
 description="${mod_description}"
-logoFile="spuds_shop_reforged_logo.png"
-displayURL="https://github.com/oNxZero/spuds-shop-reforged"
+logoFile="rosis_shop_logo.png"
+displayURL="https://github.com/oNxZero/rosis-shop"
 
 [[dependencies.${mod_id}]]
     modId="neoforge"

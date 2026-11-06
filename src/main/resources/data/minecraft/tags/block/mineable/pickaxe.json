@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "spudaciousshops:hook_shop"
+    "rosis_shop:hook_shop"
   ]
 }

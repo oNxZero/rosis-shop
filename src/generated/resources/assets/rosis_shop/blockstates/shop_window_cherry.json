@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "rosis_shop:block/shop_window_cherry"
+    },
+    "facing=east": {
+      "model": "rosis_shop:block/shop_window_cherry",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "rosis_shop:block/shop_window_cherry",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "rosis_shop:block/shop_window_cherry",
+      "y": 270
+    }
+  }
+}

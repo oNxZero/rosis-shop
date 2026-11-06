@@ -11,8 +11,8 @@ import copy
 import math
 
 ROOT = Path(__file__).resolve().parents[1]
-ASSETS = ROOT / 'src/main/resources/assets/spudaciousshops'
-GENERATED = ROOT / 'src/generated/resources/assets/spudaciousshops'
+ASSETS = ROOT / 'src/main/resources/assets/rosis_shop'
+GENERATED = ROOT / 'src/generated/resources/assets/rosis_shop'
 DATA = ROOT / 'src/main/resources/data'
 WOODS = ['acacia', 'bamboo', 'birch', 'cherry', 'crimson', 'dark_oak',
          'mangrove', 'oak', 'spruce', 'warped', 'jungle']
@@ -114,7 +114,7 @@ def shelves():
     for wood in WOODS:
         for suffix in ['', '_bottom', '_top']:
             write(GENERATED / f'models/block/shelf_shop_{wood}{suffix}.json', {
-                'parent': f'spudaciousshops:block/shelf/shelf_shop{suffix}',
+                'parent': f'rosis_shop:block/shelf/shelf_shop{suffix}',
                 'textures': wood_textures(wood)})
 
 
@@ -163,11 +163,11 @@ def other_wood_models():
         for color in COLORS:
             item = read(ASSETS / 'models/block/shop.json')
             item['textures'].update(wood_textures(wood))
-            item['textures']['cushion'] = f'spudaciousshops:block/cushion/{color}'
+            item['textures']['cushion'] = f'rosis_shop:block/cushion/{color}'
             item['elements'] = item['elements'] + [cushion]
             write(ASSETS / f'models/item/shop_{wood}_{color}.json',item)
         write(ASSETS / f'models/item/shop_{wood}.json',
-              {'parent': f'spudaciousshops:item/shop_{wood}_red'})
+              {'parent': f'rosis_shop:item/shop_{wood}_red'})
     # Hook and windowsill price boards are also ordinary pack-provided wood.
     path = ASSETS / 'models/block/hook_shop_plaque.json'
     model = read(path)
@@ -226,7 +226,7 @@ def crates():
             cube(side+'_saddle', [x+.125, -2.25, 7], [x+1.125, -1, 18.5], 'log', 'z', tilt),
         ]
     elements.append(cube('rear_crossbeam', [1.875, .25, 13], [14.125, 1, 14], 'log', 'x'))
-    model = {'credit': 'Original Spudacious5705 design; Reforged closed tray and timber stand',
+    model = {'credit': 'Original author notices in LICENSE.txt; closed tray and timber stand',
              'textures': wood_textures('oak'), 'elements': elements,
              'display': {'gui': {'rotation': [25, 225, 0], 'translation': [0, 0, 0], 'scale': [.65, .65, .65]},
                          'fixed': {'rotation': [0, 180, 0], 'scale': [.6, .6, .6]},
@@ -237,34 +237,34 @@ def crates():
                          'ground': {'rotation': [0, 0, 0], 'translation': [0, 3, 0], 'scale': [.25, .25, .25]}}}
     write(path, model)
     # Preserve the original block/item while giving new crates a consistent inventory model.
-    write(ASSETS / 'models/item/crate_shop.json', {'parent': 'spudaciousshops:block/traders_crate'})
+    write(ASSETS / 'models/item/crate_shop.json', {'parent': 'rosis_shop:block/traders_crate'})
     axes = read(DATA / 'minecraft/tags/block/mineable/axe.json')
     for wood in WOODS:
         block_id = 'crate_shop' if wood == 'oak' else 'crate_shop_' + wood
         write(ASSETS / f'models/block/{block_id}.json', {
-            'parent': 'spudaciousshops:block/traders_crate', 'textures': wood_textures(wood)})
-        write(ASSETS / f'models/item/{block_id}.json', {'parent': 'spudaciousshops:block/'+block_id})
+            'parent': 'rosis_shop:block/traders_crate', 'textures': wood_textures(wood)})
+        write(ASSETS / f'models/item/{block_id}.json', {'parent': 'rosis_shop:block/'+block_id})
         write(ASSETS / f'blockstates/{block_id}.json', {'variants': {
-            'facing='+face: {'model': 'spudaciousshops:block/'+block_id, **({'y': angle} if angle else {})}
+            'facing='+face: {'model': 'rosis_shop:block/'+block_id, **({'y': angle} if angle else {})}
             for face, angle in [('north', 0), ('east', 90), ('south', 180), ('west', 270)]}})
-        write(DATA / f'spudaciousshops/loot_table/blocks/{block_id}.json', {
+        write(DATA / f'rosis_shop/loot_table/blocks/{block_id}.json', {
             'type': 'minecraft:block', 'pools': [{'rolls': 1, 'entries': [
-                {'type': 'minecraft:item', 'name': 'spudaciousshops:'+block_id}],
+                {'type': 'minecraft:item', 'name': 'rosis_shop:'+block_id}],
                 'conditions': [{'condition': 'minecraft:survives_explosion'}]}]})
-        write(DATA / f'spudaciousshops/recipe/{block_id + ("_from_planks" if wood == "oak" else "")}.json', {
+        write(DATA / f'rosis_shop/recipe/{block_id + ("_from_planks" if wood == "oak" else "")}.json', {
             'type': 'minecraft:crafting_shaped', 'category': 'building',
             'pattern': ['PPP', 'FBF', 'PPP'], 'key': {
                 'P': {'item': 'minecraft:'+wood+'_planks'},
                 'F': {'item': 'minecraft:'+wood+'_fence'}, 'B': {'item': 'minecraft:barrel'}},
-            'result': {'id': 'spudaciousshops:'+block_id, 'count': 1}})
-        identifier = 'spudaciousshops:'+block_id
+            'result': {'id': 'rosis_shop:'+block_id, 'count': 1}})
+        identifier = 'rosis_shop:'+block_id
         if identifier not in axes['values']:
             axes['values'].append(identifier)
     write(DATA / 'minecraft/tags/block/mineable/axe.json', axes)
-    shop_tag_path = DATA / 'spudaciousshops/tags/block/spuds_shops.json'
+    shop_tag_path = DATA / 'rosis_shop/tags/block/shops.json'
     shop_tag = read(shop_tag_path)
     for wood in WOODS:
-        identifier = 'spudaciousshops:crate_shop' if wood == 'oak' else 'spudaciousshops:crate_shop_'+wood
+        identifier = 'rosis_shop:crate_shop' if wood == 'oak' else 'rosis_shop:crate_shop_'+wood
         if identifier not in shop_tag['values']:
             shop_tag['values'].append(identifier)
     write(shop_tag_path, shop_tag)
@@ -273,8 +273,8 @@ def crates():
         for wood in WOODS:
             # Provide readable fallback names in every bundled language.
             label = wood.replace('_', ' ').title()+' Crate Shop'
-            model['block.spudaciousshops.'+('crate_shop' if wood == 'oak' else 'crate_shop_'+wood)] = label
-            model['item.spudaciousshops.'+('crate_shop' if wood == 'oak' else 'crate_shop_'+wood)] = label
+            model['block.rosis_shop.'+('crate_shop' if wood == 'oak' else 'crate_shop_'+wood)] = label
+            model['item.rosis_shop.'+('crate_shop' if wood == 'oak' else 'crate_shop_'+wood)] = label
         write(path, model)
 
 
@@ -308,38 +308,38 @@ def counters():
     write(ASSETS / 'models/block/shop_window.json',model)
     axe = read(DATA / 'minecraft/tags/block/mineable/axe.json')
     pickaxe = read(DATA / 'minecraft/tags/block/mineable/pickaxe.json')
-    shops = read(DATA / 'spudaciousshops/tags/block/spuds_shops.json')
+    shops = read(DATA / 'rosis_shop/tags/block/shops.json')
     for wood in WOODS:
         suffix = 'calcite' if wood == 'oak' else ('andesite' if wood == 'spruce' else wood)
         identifier = 'shop_window_'+suffix
         write(GENERATED / f'models/block/{identifier}.json', {
-            'parent':'spudaciousshops:block/shop_window','textures':wood_textures(wood)})
-        write(GENERATED / f'models/item/{identifier}.json', {'parent':'spudaciousshops:block/'+identifier})
+            'parent':'rosis_shop:block/shop_window','textures':wood_textures(wood)})
+        write(GENERATED / f'models/item/{identifier}.json', {'parent':'rosis_shop:block/'+identifier})
         write(GENERATED / f'blockstates/{identifier}.json', {'variants':{
-            'facing='+face:{'model':'spudaciousshops:block/'+identifier,**({'y':angle} if angle else {})}
+            'facing='+face:{'model':'rosis_shop:block/'+identifier,**({'y':angle} if angle else {})}
             for face,angle in [('north',0),('east',90),('south',180),('west',270)]}})
-        write(DATA / f'spudaciousshops/recipe/{identifier}.json', {
+        write(DATA / f'rosis_shop/recipe/{identifier}.json', {
             'type':'minecraft:crafting_shaped','category':'building','pattern':['PPP',' C '],
             'key':{'P':{'item':'minecraft:'+wood+'_planks'},'C':{'item':'minecraft:chest'}},
-            'result':{'id':'spudaciousshops:'+identifier,'count':1}})
-        write(DATA / f'spudaciousshops/loot_table/blocks/{identifier}.json', {
-            'type':'minecraft:block','pools':[{'rolls':1,'entries':[{'type':'minecraft:item','name':'spudaciousshops:'+identifier}],
+            'result':{'id':'rosis_shop:'+identifier,'count':1}})
+        write(DATA / f'rosis_shop/loot_table/blocks/{identifier}.json', {
+            'type':'minecraft:block','pools':[{'rolls':1,'entries':[{'type':'minecraft:item','name':'rosis_shop:'+identifier}],
             'conditions':[{'condition':'minecraft:survives_explosion'}]}]})
-        key = 'spudaciousshops:'+identifier
+        key = 'rosis_shop:'+identifier
         if key not in axe['values']: axe['values'].append(key)
         if key not in shops['values']: shops['values'].append(key)
         if key in pickaxe['values']: pickaxe['values'].remove(key)
         for path in (ASSETS / 'lang').glob('*.json'):
             lang = read(path)
-            for prefix in ['block','item']: lang[prefix+'.spudaciousshops.'+identifier] = wood.replace('_',' ').title()+' Counter Shop'
+            for prefix in ['block','item']: lang[prefix+'.rosis_shop.'+identifier] = wood.replace('_',' ').title()+' Counter Shop'
             write(path,lang)
     write(DATA / 'minecraft/tags/block/mineable/axe.json',axe)
     write(DATA / 'minecraft/tags/block/mineable/pickaxe.json',pickaxe)
-    write(DATA / 'spudaciousshops/tags/block/spuds_shops.json',shops)
+    write(DATA / 'rosis_shop/tags/block/shops.json',shops)
     path = ASSETS / 'lang/en_us.json'
     lang = read(path)
     for key in list(lang):
-        identifier = key.split('spudaciousshops.')[-1]
+        identifier = key.split('rosis_shop.')[-1]
         for wood in WOODS:
             if identifier == 'shop_'+wood:
                 lang[key] = wood.replace('_',' ').title()+' Glass Display Shop'
@@ -399,7 +399,7 @@ def rugs():
             elements.append({'name':f'pixel_{x}_{z}','from':[x,0,z],'to':[x+1,1,z+1],'faces':faces})
         write(ASSETS / f'models/block/rug_shop/connected_{mask}.json', {
             'render_type':'minecraft:cutout',
-            'textures': {**wood_textures('oak'),'all': 'spudaciousshops:block/rug/red', 'edge':'minecraft:block/red_wool', 'particle': '#all'}, 'elements': elements})
+            'textures': {**wood_textures('oak'),'all': 'rosis_shop:block/rug/red', 'edge':'minecraft:block/red_wool', 'particle': '#all'}, 'elements': elements})
     sign = [cube('rug_sign_board',[5,1,2],[11,4,2.6], rotation={'angle':22.5,'axis':'x','origin':[8,1,2]}),
             cube('rug_sign_left_foot',[5.5,1,2.7],[6,1.8,4],'log','z'),
             cube('rug_sign_right_foot',[10,1,2.7],[10.5,1.8,4],'log','z')]
@@ -411,20 +411,20 @@ def rugs():
         for mask in range(16):
             name = f'rug_shop_{color}_connected_{mask}'
             write(GENERATED / f'models/block/{name}.json', {
-                'parent': f'spudaciousshops:block/rug_shop/connected_{mask}',
-                'textures': {'all': f'spudaciousshops:block/rug/{color}', 'edge':f'minecraft:block/{color}_wool', 'particle': '#all'}})
+                'parent': f'rosis_shop:block/rug_shop/connected_{mask}',
+                'textures': {'all': f'rosis_shop:block/rug/{color}', 'edge':f'minecraft:block/{color}_wool', 'particle': '#all'}})
             state = ','.join(f'{direction}={str(bool(mask & (1 << i))).lower()}'
                              for i, direction in enumerate(['north', 'east', 'south', 'west']))
-            variants[state] = {'model': 'spudaciousshops:block/'+name}
+            variants[state] = {'model': 'rosis_shop:block/'+name}
         multipart = [{'when': dict(part.split('=') for part in state.split(',')), 'apply':apply}
                      for state,apply in variants.items()]
         multipart += [{'when':{'facing':face}, 'apply':{
-            'model':'spudaciousshops:block/rug_shop/price_sign', **({'y':angle} if angle else {})}}
+            'model':'rosis_shop:block/rug_shop/price_sign', **({'y':angle} if angle else {})}}
             for face,angle in [('north',0),('east',90),('south',180),('west',270)]]
         write(GENERATED / f'blockstates/{block_id}.json', {'multipart': multipart})
         write(GENERATED / f'models/item/{block_id}.json', {
             'render_type':'minecraft:cutout',
-            'textures':{**wood_textures('oak'),'all':f'spudaciousshops:block/rug/{color}',
+            'textures':{**wood_textures('oak'),'all':f'rosis_shop:block/rug/{color}',
                         'edge':f'minecraft:block/{color}_wool'},
             'elements': read(ASSETS / 'models/block/rug_shop/connected_0.json')['elements']+sign,
             'display': {'gui': {'rotation':[30,225,0],'scale':[.75,.75,.75]},
@@ -441,7 +441,7 @@ def bordered(model):
     for e in list(model['elements']):
         if e.get('name') not in ('plaque','price_tag_board','rug_sign_board'):
             continue
-        bounds = e.setdefault('spuds_board_bounds', [list(e['from']),list(e['to'])])
+        bounds = e.setdefault('shop_board_bounds', [list(e['from']),list(e['to'])])
         (x,y,z),(X,Y,Z) = bounds
         e['from'], e['to'] = [x+.25,y+.25,z], [X-.25,Y-.25,Z]
         retexture(e,'planks')
@@ -519,31 +519,31 @@ def hanging_shops():
         identifier = 'hook_shop' if wood == 'oak' else 'hook_shop_'+wood
         board = 'hook_shop_plaque' if wood == 'oak' else identifier+'_plaque'
         write(ASSETS / f'models/block/{board}.json', {
-            'parent':'spudaciousshops:block/hook_shop_plaque','textures':wood_textures(wood)} if wood != 'oak' else base)
+            'parent':'rosis_shop:block/hook_shop_plaque','textures':wood_textures(wood)} if wood != 'oak' else base)
         variant = copy.deepcopy(state)
         for part in variant['multipart']:
             if part['apply']['model'].endswith('hook_shop_plaque'):
-                part['apply']['model'] = 'spudaciousshops:block/'+board
+                part['apply']['model'] = 'rosis_shop:block/'+board
         write(ASSETS / f'blockstates/{identifier}.json',variant)
         item = copy.deepcopy(base)
         item['elements'] += chain['elements']
         item['textures'].update(wood_textures(wood))
         item['display']['gui'] = {'rotation':[20,30,0],'scale':[.8,.8,.8]}
         write(ASSETS / f'models/item/{identifier}.json',item)
-        write(DATA / f'spudaciousshops/loot_table/blocks/{identifier}.json', {
-            'type':'minecraft:block','pools':[{'rolls':1,'entries':[{'type':'minecraft:item','name':'spudaciousshops:'+identifier}],
+        write(DATA / f'rosis_shop/loot_table/blocks/{identifier}.json', {
+            'type':'minecraft:block','pools':[{'rolls':1,'entries':[{'type':'minecraft:item','name':'rosis_shop:'+identifier}],
             'conditions':[{'condition':'minecraft:survives_explosion'}]}]})
-        write(DATA / f'spudaciousshops/recipe/{identifier}.json', {
+        write(DATA / f'rosis_shop/recipe/{identifier}.json', {
             'type':'minecraft:crafting_shaped','category':'building','pattern':[' C ',' P ',' I '],
             'key':{'C':{'item':'minecraft:chain'},'P':{'item':'minecraft:'+wood+'_planks'},'I':{'item':'minecraft:iron_nugget'}},
-            'result':{'id':'spudaciousshops:'+identifier,'count':1}})
-        for tag in ['minecraft/tags/block/mineable/axe','spudaciousshops/tags/block/spuds_shops']:
+            'result':{'id':'rosis_shop:'+identifier,'count':1}})
+        for tag in ['minecraft/tags/block/mineable/axe','rosis_shop/tags/block/shops']:
             path=DATA/(tag+'.json'); data=read(path)
-            if 'spudaciousshops:'+identifier not in data['values']: data['values'].append('spudaciousshops:'+identifier)
+            if 'rosis_shop:'+identifier not in data['values']: data['values'].append('rosis_shop:'+identifier)
             write(path,data)
         for path in (ASSETS/'lang').glob('*.json'):
             lang=read(path)
-            for prefix in ['item','block']: lang[prefix+'.spudaciousshops.'+identifier]=wood.replace('_',' ').title()+' Hanging Display Shop'
+            for prefix in ['item','block']: lang[prefix+'.rosis_shop.'+identifier]=wood.replace('_',' ').title()+' Hanging Display Shop'
             write(path,lang)
 
 
@@ -564,7 +564,7 @@ def inventory_icons():
         if 'elements' in model: return model['elements']
         parent=model.get('parent','')
         seen=set() if seen is None else seen
-        if not parent.startswith('spudaciousshops:') or parent in seen: return []
+        if not parent.startswith('rosis_shop:') or parent in seen: return []
         seen.add(parent)
         relative='models/'+parent.split(':',1)[1]+'.json'
         for root in [ASSETS,GENERATED]:
@@ -575,7 +575,7 @@ def inventory_icons():
     def root_transform(model, seen=None):
         if 'transform' in model: return model['transform']
         parent=model.get('parent','');seen=set() if seen is None else seen
-        if not parent.startswith('spudaciousshops:') or parent in seen: return None
+        if not parent.startswith('rosis_shop:') or parent in seen: return None
         seen.add(parent)
         for root in [ASSETS,GENERATED]:
             path=root/('models/'+parent.split(':',1)[1]+'.json')

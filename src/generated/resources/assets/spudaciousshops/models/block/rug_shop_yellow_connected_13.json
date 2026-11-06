@@ -1,8 +1,0 @@
-{
-  "parent": "spudaciousshops:block/rug_shop/connected_13",
-  "textures": {
-    "all": "spudaciousshops:block/rug/yellow",
-    "edge": "minecraft:block/yellow_wool",
-    "particle": "#all"
-  }
-}

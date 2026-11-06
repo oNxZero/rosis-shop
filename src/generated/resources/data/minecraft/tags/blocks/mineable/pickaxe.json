@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "spudaciousshops:shop_window_calcite",
-    "spudaciousshops:shop_window_andesite",
-    "spudaciousshops:hook_shop"
+    "rosis_shop:shop_window_calcite",
+    "rosis_shop:shop_window_andesite",
+    "rosis_shop:hook_shop"
   ]
 }

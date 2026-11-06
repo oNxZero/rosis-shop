@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rosis_shop:contract_scroll"
+    }
+  ],
+  "result": {
+    "item": "rosis_shop:contract_scroll"
+  }
+}

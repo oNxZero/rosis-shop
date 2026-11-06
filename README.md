@@ -1,7 +1,7 @@
-# Spuds Shop Reforged
+# Rosis Shop
 
 <p align="center">
-  <img src="docs/assets/spuds-shop-reforged-logo.png" alt="Spuds Shop Reforged logo" width="420">
+  <img src="docs/assets/rosis-shop-logo.png" alt="Rosis Shop logo" width="420">
 </p>
 
 Decorative player shops for **Minecraft 1.21.1 • NeoForge**, with fixes for item duplication, trade accounting, and inventory interactions.
@@ -9,8 +9,6 @@ Decorative player shops for **Minecraft 1.21.1 • NeoForge**, with fixes for it
 ![Minecraft 1.21.1](https://img.shields.io/badge/Minecraft-1.21.1-62B47A)
 ![NeoForge](https://img.shields.io/badge/Loader-NeoForge-E87527)
 ![MIT license](https://img.shields.io/badge/License-MIT-blue)
-
-Spuds Shop Reforged is a community fork of **[Spud's Shops](https://modrinth.com/mod/spuds-shops)** by **Spudacious5705**, maintained upstream at [Milo-Cat/spuds-shops](https://github.com/Milo-Cat/spuds-shops). This codebase comes through [lucab's fork](https://modrinth.com/mod/spuds-shop-fork) and [Ede1vveiss's fork](https://github.com/Ede1vveiss/spuds-shops-forked-squared). The original shop designs and gameplay belong to those projects; Reforged focuses on fixing and maintaining this fork.
 
 ## What you can do
 
@@ -29,7 +27,7 @@ Spuds Shop Reforged is a community fork of **[Spud's Shops](https://modrinth.com
 
 Trade configuration uses **ghost items**: setting a price or product does not consume the item in your cursor. Actual purchases consume real payment and stock.
 
-## Changes in Reforged
+## Trade and inventory handling
 
 | Area | Changes |
 | --- | --- |
@@ -41,7 +39,6 @@ Trade configuration uses **ghost items**: setting a price or product does not co
 | Shift-click | Restricts bulk purchases to the product slot, includes the final hotbar slot when withdrawing stock, and completes transfer callbacks. |
 | Inventory display | Refreshes server slot state after owner-menu transfers to address stale item displays during rapid transfers. |
 | Contracts | Avoids a server-side exception when clicking your own contract to open the removal warning. |
-| Branding | Uses Spuds Shop Reforged in mod metadata, creative tabs, resource-pack metadata, build output, and the config filename. |
 
 **Validation:** the build and regression checks pass, including exact extraction, repeated-purchase stock conservation, register capacity, and durability matching. Quick-buy mouse behavior, sound feedback, Mouse Tweaks visual behavior, and combined mod interactions still need in-game verification. These fixes are not a claim that every possible exploit has been eliminated.
 
@@ -50,21 +47,25 @@ Selectable trades and an ignore-item-data mode are not implemented in this fork.
 ## Installation
 
 1. Install **Minecraft 1.21.1** with **NeoForge** (the current build targets NeoForge **21.1.65**).
-2. Obtain the Reforged JAR from the maintainer, or build it using the instructions below.
+2. Obtain the Rosis Shop JAR from the maintainer, or build it using the instructions below.
 3. Put it in the `mods` folder on the client and server.
-4. Remove other Spud's Shops JARs before starting the game: they share the same internal mod ID.
+4. Replace the previous shop mod JAR on both the client and server. Use the same version on both.
 
-The internal ID remains `spudaciousshops` to preserve existing item and block IDs. Back up an existing world before changing mod versions; compatibility with every upstream version has not been verified.
+The mod ID is `rosis_shop`. Compatibility aliases resolve the previous registry IDs
+when loading existing shops and inventories. Back up your world before upgrading;
+custom resource packs and integrations should use the new namespace.
 
 ## Configuration
 
 The config lives at:
 
 ```text
-config/spuds_shop_reforged.toml
+config/rosis_shop.toml
 ```
 
-If `config/spudaciousshops.toml` exists and the new file does not, Reforged copies the old settings automatically. It leaves the old file intact and never overwrites an existing Reforged config.
+Existing settings are copied automatically to the new config when it does not
+already exist. The migration leaves the previous config intact and never
+overwrites an existing Rosis Shop config.
 
 Purchase effects can be adjusted independently of the shop’s existing idle effects. Restart the game/server after editing. Sound and particle IDs use Minecraft registry names; particles must be simple types without extra data (such as `happy_villager`, `heart`, or `end_rod`). Invalid IDs fall back to the defaults.
 
@@ -102,8 +103,8 @@ Other shop options are configured through the shop GUI.
 Requires **JDK 21**. The Gradle wrapper downloads build dependencies on the first run.
 
 ```bash
-git clone https://github.com/oNxZero/spuds-shop-reforged.git
-cd spuds-shop-reforged
+git clone https://github.com/oNxZero/rosis-shop.git
+cd rosis-shop
 bash gradlew build
 ```
 
@@ -112,7 +113,7 @@ On Windows, use `gradlew.bat build`.
 Output:
 
 ```text
-build/libs/Spuds Shop Reforged-1.9.11.jar
+build/libs/rosis-shop-2.0.0.jar
 ```
 
 Wood and rug model assets can be regenerated and checked with Python 3:
@@ -120,11 +121,13 @@ Wood and rug model assets can be regenerated and checked with Python 3:
 ```bash
 python3 tools/generate_shop_models.py
 python3 tools/check_shop_models.py
+python3 tools/check_resources.py
 ```
 
 The model checks cover all rug connections, crate support penetration, horizontal beam grain, and variant resources. New wood crates are crafted with six matching planks, two matching fences, and a barrel (`PPP / FBF / PPP`). The Oak Crate Shop replaces the Merchant’s Crate using its original ID. There is one crate per wood type; the original three-barrel recipe still works.
 
-`build` runs the trade-extraction regressions. To run them separately:
+`build` runs trade-extraction, saved-ID compatibility, and config-migration regressions.
+To run them separately:
 
 ```bash
 bash gradlew tradeRegression
@@ -132,15 +135,11 @@ bash gradlew tradeRegression
 
 ## Report a problem
 
-Open an [issue](https://github.com/oNxZero/spuds-shop-reforged/issues) with your Minecraft and NeoForge versions, other relevant mods, reproduction steps, and logs. For inventory bugs, include the items, quantities, shop type, and click or sorting action involved.
+Open an [issue](https://github.com/oNxZero/rosis-shop/issues) with your Minecraft and NeoForge versions, other relevant mods, reproduction steps, and logs. For inventory bugs, include the items, quantities, shop type, and click or sorting action involved.
 
-## Credits and license
+## License
 
-- **Spudacious5705 / Milo-Cat** — original Spud's Shops project.
-- **lucab** — the intermediate fork.
-- **Ede1vveiss** — the fork this codebase builds on.
-- **oNxZero** — Spuds Shop Reforged maintenance.
-
-Licensed under the **[MIT License](LICENSE.txt)**. Original copyright notices are preserved.
+Licensed under the **[MIT License](LICENSE.txt)**. Original author copyright
+notices are preserved in the license and included in the built JAR.
 
 Wooden Counter Shops come in all eleven wood types and use three matching planks above a chest (`PPP /  C `). The former calcite and andesite IDs now represent oak and spruce counters, preserving existing shops and their inventories. Glass Display Shops name the angled glass-and-cushion display explicitly.

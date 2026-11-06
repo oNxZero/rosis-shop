@@ -27,6 +27,10 @@ jobs:
           distribution: 'microsoft'
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
+      - name: check models and resource references
+        run: |
+          python3 tools/check_shop_models.py
+          python3 tools/check_resources.py
       - name: build
         run: ./gradlew build
       - name: capture build artifacts

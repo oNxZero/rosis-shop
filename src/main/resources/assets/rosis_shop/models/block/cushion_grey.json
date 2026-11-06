@@ -1,0 +1,6 @@
+{
+  "parent": "rosis_shop:block/cushion",
+  "textures": {
+    "1": "rosis_shop:block/cushion/gray"
+  }
+}

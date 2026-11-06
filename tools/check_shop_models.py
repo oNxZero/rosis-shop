@@ -92,16 +92,16 @@ for wood in WOODS:
     for folder in ['blockstates', 'models/item']:
         assert (ASSETS / f'{folder}/{identifier}.json').exists()
     for folder in ['loot_table/blocks']:
-        assert (DATA / f'spudaciousshops/{folder}/{identifier}.json').exists()
-    recipe = read(DATA / f'spudaciousshops/recipe/{identifier + ("_from_planks" if wood == "oak" else "")}.json')
-    assert recipe['result']['id'] == 'spudaciousshops:'+identifier
+        assert (DATA / f'rosis_shop/{folder}/{identifier}.json').exists()
+    recipe = read(DATA / f'rosis_shop/recipe/{identifier + ("_from_planks" if wood == "oak" else "")}.json')
+    assert recipe['result']['id'] == 'rosis_shop:'+identifier
 for stem, count in [('shelf_shop', 2), ('shelf_shop_bottom', 1), ('shelf_shop_top', 1)]:
     model = read(ASSETS / f'models/block/shelf/{stem}.json')
     tags = [e for e in model['elements'] if e['name'] == 'price_tag_board']
     assert len(tags) == count
     for tag in tags:
-        assert tag['spuds_board_bounds'][1][0]-tag['spuds_board_bounds'][0][0] == 7
-        assert tag['spuds_board_bounds'][1][1]-tag['spuds_board_bounds'][0][1] == 3
+        assert tag['shop_board_bounds'][1][0]-tag['shop_board_bounds'][0][0] == 7
+        assert tag['shop_board_bounds'][1][1]-tag['shop_board_bounds'][0][1] == 3
 print('Passed: 16 rug layouts without overlaps/gaps; closed crate tray and beam axes; 11 crate variants; hanging tag sizes.')
 
 # Hanging hooks keep their transparent metal atlas instead of becoming wooden strips.
@@ -115,13 +115,13 @@ for wood in WOODS:
     assert item['textures']['chain'] == 'minecraft:block/chain'
     assert item['textures']['gold'] == 'minecraft:block/gold_block'
     assert item['textures']['planks'] == f'minecraft:block/{wood}_planks'
-    assert read(DATA / f'spudaciousshops/recipe/{identifier}.json')['result']['id'] == 'spudaciousshops:'+identifier
+    assert read(DATA / f'rosis_shop/recipe/{identifier}.json')['result']['id'] == 'rosis_shop:'+identifier
     assert sum(e['name'].startswith('sign_trim_') for e in item['elements']) == 16
 rug_sign = read(ASSETS / 'models/block/rug_shop/price_sign.json')
 board = next(e for e in rug_sign['elements'] if e['name'] == 'rug_sign_board')
 assert board['to'][2] < 8, 'rug price sign must face the front'
 plaque = next(e for e in crate['elements'] if e['name'] == 'plaque')
-assert plaque['spuds_board_bounds'][1][1]-plaque['spuds_board_bounds'][0][1] == 3.5, 'crate tag must use a compact single price row'
+assert plaque['shop_board_bounds'][1][1]-plaque['shop_board_bounds'][0][1] == 3.5, 'crate tag must use a compact single price row'
 print('Passed: 11 hanging wood variants, metal hook UVs, bordered signs, front rug sign, compact crate tag.')
 
 counter = read(ASSETS / 'models/block/shop_window.json')

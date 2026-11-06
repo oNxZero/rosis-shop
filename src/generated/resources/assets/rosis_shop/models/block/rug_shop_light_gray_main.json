@@ -1,0 +1,7 @@
+{
+  "parent": "rosis_shop:block/rug_shop/rug_shop_main",
+  "textures": {
+    "all": "rosis_shop:block/rug/light_gray",
+    "particle": "rosis_shop:block/rug/light_gray"
+  }
+}

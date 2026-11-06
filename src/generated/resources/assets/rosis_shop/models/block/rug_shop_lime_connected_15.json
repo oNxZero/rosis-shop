@@ -1,0 +1,8 @@
+{
+  "parent": "rosis_shop:block/rug_shop/connected_15",
+  "textures": {
+    "all": "rosis_shop:block/rug/lime",
+    "edge": "minecraft:block/lime_wool",
+    "particle": "#all"
+  }
+}
